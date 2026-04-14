@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Flora Sound System framed mark</title>
+  <desc id="desc">Minimal arched emblem with a fiddlehead-inspired spiral in bronze on a transparent background.</desc>
+  <defs>
+    <style>
+      .bronze { stroke: #D6A15A; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <path class="bronze" stroke-width="10"
+        d="M305 288
+           A207 207 0 0 1 719 288
+           L719 706
+           L305 706
+           Z"/>
+
+  <path class="bronze" stroke-width="14"
+        d="M438 703
+           C452 631, 494 580, 546 532
+           C620 463, 681 434, 686 360
+           C691 300, 646 253, 580 250
+           C509 247, 445 286, 425 352
+           C404 426, 459 489, 533 495
+           C607 501, 664 453, 669 397
+           C674 347, 642 311, 595 304
+           C549 297, 498 325, 484 370
+           C469 416, 503 454, 548 460
+           C592 467, 623 438, 627 402
+           C630 370, 611 347, 582 344
+           C554 340, 525 356, 517 383
+           C510 407, 527 428, 551 432" />
+
+  <path class="bronze" stroke-width="9"
+        d="M462 703
+           C476 640, 512 594, 557 551" />
+
+  <g class="bronze" stroke-width="8">
+    <path d="M442 351 C457 337, 476 331, 495 333" />
+    <path d="M434 392 C449 379, 466 373, 484 374" />
+    <path d="M447 437 C460 424, 476 418, 492 419" />
+    <path d="M485 470 C496 457, 511 451, 527 451" />
+    <path d="M509 313 C521 301, 536 294, 552 292" />
+    <path d="M555 293 C566 280, 580 272, 596 270" />
+    <path d="M601 301 C612 288, 625 281, 640 278" />
+    <path d="M644 324 C654 313, 666 305, 679 301" />
+    <path d="M665 364 C676 352, 683 339, 686 326" />
+    <path d="M520 448 C530 437, 543 431, 556 430" />
+    <path d="M548 431 C558 421, 568 414, 578 412" />
+    <path d="M571 411 C581 401, 589 394, 598 389" />
+  </g>
+</svg>

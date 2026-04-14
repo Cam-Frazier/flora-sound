@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Flora Sound System icon mark</title>
+  <desc id="desc">Minimal fiddlehead-inspired spiral icon in bronze on a transparent background.</desc>
+  <defs>
+    <style>
+      .bronze { stroke: #D6A15A; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <path class="bronze" stroke-width="14"
+        d="M392 700
+           C430 660, 474 636, 536 612
+           C618 580, 696 516, 704 434
+           C712 355, 654 305, 579 299
+           C510 294, 441 337, 421 406
+           C399 483, 457 546, 533 554
+           C611 562, 668 507, 674 444
+           C679 391, 646 352, 596 344
+           C550 337, 499 366, 484 413
+           C469 460, 503 499, 548 506
+           C593 513, 625 482, 628 444
+           C631 411, 612 387, 582 383
+           C554 379, 524 396, 516 424
+           C509 448, 527 471, 551 474" />
+
+  <g class="bronze" stroke-width="8">
+    <path d="M438 405 C452 391, 470 385, 489 387" />
+    <path d="M429 448 C445 435, 462 430, 479 432" />
+    <path d="M441 495 C454 481, 470 475, 487 476" />
+    <path d="M479 528 C490 514, 506 507, 523 507" />
+    <path d="M505 359 C517 345, 534 337, 551 336" />
+    <path d="M553 336 C565 321, 579 314, 595 313" />
+    <path d="M601 344 C612 331, 626 323, 641 321" />
+    <path d="M645 368 C655 355, 668 347, 681 344" />
+    <path d="M670 409 C681 397, 689 384, 692 370" />
+    <path d="M516 501 C526 488, 539 482, 553 481" />
+    <path d="M547 484 C558 473, 568 467, 579 465" />
+    <path d="M571 465 C581 454, 589 447, 598 442" />
+  </g>
+</svg>
