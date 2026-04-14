@@ -50,6 +50,15 @@ body {
   z-index: 2;
 }
 
+/* LOGO IMAGE */
+.logo img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* LOGO */
 .logo h1 {
   font-size: 3rem;
