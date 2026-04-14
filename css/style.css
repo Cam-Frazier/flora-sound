@@ -17,7 +17,9 @@
 /* BASE */
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--green-dark);
+    background:
+    linear-gradient(rgba(15,42,31,0.92), rgba(15,42,31,0.96)),
+    url('../assets/bg.jpg') center/cover no-repeat;
   color: var(--text-light);
 }
 
