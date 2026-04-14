@@ -18,7 +18,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #0f2a1f;
-  background-image: linear-gradient(rgba(15,42,31,0.92), rgba(15,42,31,0.96)), url("/flora-sound/assets/bg.jpg");
+  background-image: linear-gradient(rgba(15,42,31,0.92), rgba(15,42,31,0.96)), url("/assets/bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
