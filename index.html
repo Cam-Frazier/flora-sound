@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,19 +6,19 @@
   <title>Flora Sound System</title>
 
   <link rel="stylesheet" href="css/style.css" />
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 </head>
 <body>
 
   <main class="coming-soon">
-
     <div class="coming-soon__inner">
 
       <div class="logo">
         <img src="/assets/flora-spiral.png" alt="Flora Sound System Logo">
       </div>
-      
+
       <div class="logo">
         <h1>FLORA</h1>
         <span>Sound System</span>
@@ -28,14 +27,55 @@
       <div class="content">
         <h2>Currently Growing</h2>
         <p>
-          Proundly rooted in Vancouver, BC</br>
+          Proudly rooted in Vancouver, BC<br>
           Pushing sound for the culture
         </p>
+
+        <button class="contact-trigger" type="button">
+          Contact Us
+        </button>
       </div>
 
     </div>
-
   </main>
+
+  <div class="contact-modal" id="contactModal" aria-hidden="true">
+    <div class="contact-modal__overlay" data-close-modal></div>
+
+    <div class="contact-modal__box" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <button class="contact-modal__close" type="button" data-close-modal>&times;</button>
+
+      <h3 id="contactModalTitle">Contact Us</h3>
+
+      <form 
+        class="contact-form" 
+        action="https://formspree.io/f/mnjwegav" 
+        method="POST"
+      >
+        <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
+        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
+
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <button type="submit">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
