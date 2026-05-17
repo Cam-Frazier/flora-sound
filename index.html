@@ -1,80 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flora Sound System</title>
-
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flora Sound System | Vancouver, BC</title>
+  <meta name="description" content="Flora Sound System is a handcrafted boutique sound system rooted in bass culture and built in the Pacific Northwest.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <header class="site-header" data-header>
+    <a class="site-logo" href="#top" aria-label="Flora Sound System home">
+      <img src="assets/flora-logo-horizontal.png" alt="Flora Sound System">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+      <span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav">
+      <a href="#about">About</a>
+      <a href="#what-is-flora">What Is Flora</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#newsletter">Newsletter</a>
+    </nav>
+  </header>
 
-  <main class="coming-soon">
-    <div class="coming-soon__inner">
-
-      <div class="logo">
-        <img src="/assets/flora-spiral.png" alt="Flora Sound System Logo">
+  <main id="top">
+    <section class="hero section-dark">
+      <div class="hero-bg" data-parallax="0.12"><img fetchpriority="high" src="assets/flora-stack-wide.jpg" alt="Flora Sound System speaker stack"></div>
+      <div class="hero-inner container" data-animate="fade-up">
+        <p class="eyebrow">Vancouver, BC · Est. 2026</p>
+        <img class="hero-wordmark" src="assets/flora-logo-horizontal.png" alt="Flora Sound System">
+        <h1>Rooted in nature.<br>Powered by sound.</h1>
+        <p class="hero-intro">A handcrafted boutique sound system grown in the Pacific Northwest for immersive gatherings, deep listening, and culture rooted in connection.</p>
+        <div class="hero-actions">
+          <button class="btn" type="button" data-open-modal="contact-modal">Book Now</button>
+          <a class="text-link" href="#gallery">View Gallery</a>
+        </div>
       </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to about">↓</a>
+    </section>
 
-      <div class="logo">
-        <h1>FLORA</h1>
-        <span>Sound System</span>
+    <section class="about section-dark" id="about">
+      <div class="container split">
+        <div class="copy-block">
+          <p class="eyebrow" data-animate="fade-up">About</p>
+          <h2 data-animate="fade-up">Sound that moves people.</h2>
+          <p>Flora Sound System was handcrafted by five passionate individuals with a shared vision: to give our community a unique and immersive sound experience rooted in connection, culture, and creativity.</p>
+          <p>A seed was planted back in 2019 with the dream of building a system that not only sounded incredible, but stood as a work of art in its own right.</p>
+        </div>
+        <figure class="image-frame" data-animate="slide-left"><img loading="lazy" src="assets/flora-crew.jpg" alt="The Flora Sound System crew standing in front of the stack"></figure>
       </div>
+    </section>
 
-      <div class="content">
-        <h2>Currently Growing</h2>
-        <p>
-          Proudly rooted in Vancouver, BC<br>
-          Pushing sound for the culture
-        </p>
-
-        <button class="contact-trigger" type="button">
-          Contact Us
-        </button>
+    <section class="flora-story" id="what-is-flora">
+      <div class="container flora-story-grid">
+        <div class="flora-story-mark" data-animate="scale-in" data-parallax="0.08"><img loading="lazy" src="assets/flora-spiral.png" alt="Flora fiddlehead spiral logo"></div>
+        <div class="copy-block dark-copy" data-animate="fade-up">
+          <p class="eyebrow">What is Flora?</p>
+          <h2>A living system, built by hand.</h2>
+          <p>Flora is a boutique sound system with roots in the Pacific Northwest. Every cabinet, curve, and detail was shaped with intention, drawing from the forests, coastlines, and natural textures that surround us.</p>
+          <p>Our fiddlehead mark speaks to growth, movement, and resonance. Like a spiral found in nature, it carries a quiet connection to sound, symmetry, and the feeling of something slowly unfolding.</p>
+          <p>We built Flora to feel as considered as it sounds: warm, grounded, powerful, and deeply connected to the environment and community around it.</p>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <section class="gallery" id="gallery">
+      <div class="container gallery-layout">
+        <div class="gallery-intro" data-animate="fade-up">
+          <p class="eyebrow">Gallery</p>
+          <h2>Moments from the build.</h2>
+          <p>From first cuts to final deployment, Flora grew slowly and intentionally.</p>
+          <button class="text-link dark" type="button" data-open-modal="gallery-modal">View Gallery</button>
+        </div>
+        <button class="gallery-card tall" data-animate="slide-up" type="button" data-open-modal="gallery-modal"><img loading="lazy" src="assets/gallery/build-05.jpg" alt="Flora Sound System build photo"></button>
+        <button class="gallery-card" type="button" data-open-modal="gallery-modal" data-animate="slide-up"><img loading="lazy" src="assets/gallery/build-08.jpg" alt="Flora Sound System build detail"></button>
+        <button class="gallery-card" type="button" data-open-modal="gallery-modal" data-animate="slide-up"><img loading="lazy" src="assets/gallery/build-09.jpg" alt="Flora Sound System build process"></button>
+      </div>
+    </section>
+
+    <section class="contact section-dark" id="contact">
+      <div class="contact-bg"><img src="assets/flora-spiral.png" alt=""></div>
+      <div class="container contact-grid" data-animate="fade-up">
+        <div class="copy-block">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s work together.</h2>
+          <p>Have an event coming up or want to collaborate? Send us a note and we’ll get back to you.</p>
+          <div class="contact-details">
+            <a href="mailto:hello@florasound.com">hello@florasound.com</a>
+            <span>Vancouver, BC Canada</span>
+          </div>
+        </div>
+        <form class="contact-form" action="https://formspree.io/f/mnjwegav" method="POST">
+          <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
+          <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
+          <label><span>Your Name</span><input name="name" type="text" autocomplete="name" required></label>
+          <label><span>Email Address</span><input name="email" type="email" autocomplete="email" required></label>
+          <label><span>Subject</span><input name="subject" type="text"></label>
+          <label><span>Your Message</span><textarea name="message" rows="6" required></textarea></label>
+          <button class="text-link form-submit" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <div class="newsletter-bg"><img src="assets/flora-stack-wide.jpg" alt=""></div>
+      <div class="container newsletter-grid" data-animate="fade-up">
+        <div>
+          <p class="eyebrow">Join the Flora family</p>
+          <h2>Sign up for updates on events, photos, and future deployments.</h2>
+        </div>
+        <form class="newsletter-form" action="https://formspree.io/f/mnjwegav" method="POST">
+          <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
+          <input type="hidden" name="_subject" value="New Flora newsletter signup">
+          <input type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+    </section>
   </main>
 
-  <div class="contact-modal" id="contactModal" aria-hidden="true">
-    <div class="contact-modal__overlay" data-close-modal></div>
+  <footer class="site-footer">
+    <img src="assets/flora-logo-horizontal.png" alt="Flora Sound System">
+    <nav><a href="#about">About</a><a href="#what-is-flora">What Is Flora</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></nav>
+    <p>© 2026 Flora Sound System.</p>
+  </footer>
 
-    <div class="contact-modal__box" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
-      <button class="contact-modal__close" type="button" data-close-modal>&times;</button>
-
-      <h3 id="contactModalTitle">Contact Us</h3>
-
-      <form 
-        class="contact-form" 
-        action="https://formspree.io/f/mnjwegav" 
-        method="POST"
-      >
+  <div class="modal" id="contact-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-panel modal-panel-contact">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close modal">×</button>
+      <div class="modal-copy">
+        <p class="eyebrow">Book Flora</p>
+        <h2 id="contact-modal-title">Tell us about your event.</h2>
+        <p>For bookings, collaborations, and community connections, send us a note.</p>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mnjwegav" method="POST">
         <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
-        <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
-        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
-
-        <label>
-          Name
-          <input type="text" name="name" required>
-        </label>
-
-        <label>
-          Email
-          <input type="email" name="email" required>
-        </label>
-
-        <label>
-          Message
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-
-        <button type="submit">
-          Send Message
-        </button>
+        <input type="hidden" name="_subject" value="New Flora Sound System Booking Request">
+        <label><span>Your Name</span><input name="name" type="text" autocomplete="name" required></label>
+        <label><span>Email Address</span><input name="email" type="email" autocomplete="email" required></label>
+        <label><span>Event / Subject</span><input name="subject" type="text"></label>
+        <label><span>Your Message</span><textarea name="message" rows="6" required></textarea></label>
+        <button class="text-link form-submit" type="submit">Send Message</button>
       </form>
+    </div>
+  </div>
+
+  <div class="modal" id="gallery-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-panel modal-panel-gallery">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close modal">×</button>
+      <div class="modal-copy gallery-modal-heading">
+        <p class="eyebrow">Build Gallery</p>
+        <h2 id="gallery-modal-title">Flora in progress.</h2>
+      </div>
+      <div class="modal-gallery-grid">
+        <img loading="lazy" src="assets/gallery/build-01.jpeg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-02.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-03.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-04.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-05.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-06.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-07.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-08.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-09.jpg" alt="Flora build photo">
+        <img loading="lazy" src="assets/gallery/build-10.jpg" alt="Flora build photo">
+      </div>
     </div>
   </div>
 
