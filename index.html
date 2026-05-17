@@ -187,5 +187,12 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script>
+grecaptcha.ready(function () {
+  grecaptcha.execute('6LedUOwsAAAAAAnmt8I5DcF2A5K8Zqt7OECZDyzk', { action: 'submit' }).then(function (token) {
+    document.getElementById('g-recaptcha-response').value = token;
+  });
+});
+</script>
 </body>
 </html>
