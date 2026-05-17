@@ -26,10 +26,6 @@
   overflow: hidden;
 }
 
-.hero-bg img {
-  min-height: 120%;
-}
-
 #site-nav a:last-of-type{
   display: none;
 }
