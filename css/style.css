@@ -33,3 +33,7 @@
 #newsletter{
   display: none;
 }
+
+.grecaptcha-badge {
+  display: none !important;
+}
