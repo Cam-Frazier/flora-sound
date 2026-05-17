@@ -97,20 +97,12 @@
             <span>Vancouver, BC Canada</span>
           </div>
         </div>
-        <form class="contact-form" action="https://formspree.io/f/mnjwegav" method="POST">
-          <input
-            type="hidden"
-            name="g-recaptcha-response"
-            id="g-recaptcha-response"
-          >
-          <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
-          <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
-          <label><span>Your Name</span><input name="name" type="text" autocomplete="name" required></label>
-          <label><span>Email Address</span><input name="email" type="email" autocomplete="email" required></label>
-          <label><span>Subject</span><input name="subject" type="text"></label>
-          <label><span>Your Message</span><textarea name="message" rows="6" required></textarea></label>
-          <button class="text-link form-submit" type="submit">Send Message</button>
-        </form>
+        <form
+          class="contact-form"
+          id="flora-contact-form"
+          action="https://formspree.io/f/mnjwegav"
+          method="POST"
+        >
       </div>
     </section>
 
@@ -146,20 +138,12 @@
         <h2 id="contact-modal-title">Tell us about your event.</h2>
         <p>For bookings, collaborations, and community connections, send us a note.</p>
       </div>
-      <form class="contact-form" action="https://formspree.io/f/mnjwegav" method="POST">
-        <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
-        <input type="hidden" name="_subject" value="New Flora Sound System Booking Request">
-        <input
-          type="hidden"
-          name="g-recaptcha-response"
-          id="g-recaptcha-response"
-          >
-        <label><span>Your Name</span><input name="name" type="text" autocomplete="name" required></label>
-        <label><span>Email Address</span><input name="email" type="email" autocomplete="email" required></label>
-        <label><span>Event / Subject</span><input name="subject" type="text"></label>
-        <label><span>Your Message</span><textarea name="message" rows="6" required></textarea></label>
-        <button class="text-link form-submit" type="submit">Send Message</button>
-      </form>
+        <form class="newsletter-form" action="https://formspree.io/f/mnjwegav" method="POST">
+          <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
+          <input type="hidden" name="_subject" value="New Flora newsletter signup">
+          <input type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+          <button type="submit">Sign Up</button>
+        </form>
     </div>
   </div>
 
@@ -194,5 +178,28 @@ grecaptcha.ready(function () {
   });
 });
 </script>
+  <script>
+  const floraForm = document.getElementById('flora-contact-form');
+  floraForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(floraForm);
+    const response = await fetch(floraForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    if (response.ok) {
+      floraForm.innerHTML = `
+        <div class="form-success">
+          Thanks for your submission — we’ll be getting back to you at our earliest convenience.
+        </div>
+      `;
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  });
+  </script>
 </body>
 </html>
