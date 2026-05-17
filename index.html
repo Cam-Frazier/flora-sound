@@ -104,7 +104,7 @@
       >
         <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
         <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
-        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
+        <input type="hidden" name="g-recaptcha-response" class="recaptcha-token">
 
         <label>
           Name
@@ -140,7 +140,7 @@
       >
         <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
         <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
-        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
+        <input type="hidden" name="g-recaptcha-response" class="recaptcha-token">
 
         <label>
           Name
@@ -185,7 +185,7 @@
       >
         <input type="hidden" name="_redirect" value="https://florasound.com/?success=true">
         <input type="hidden" name="_subject" value="New Flora Sound System Contact Form Submission">
-        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
+        <input type="hidden" name="g-recaptcha-response" class="recaptcha-token">
 
         <label>
           Name
@@ -231,35 +231,70 @@
   </div>
 
   <script src="js/main.js"></script>
+
   <script>
-grecaptcha.ready(function () {
-  grecaptcha.execute('6LedUOwsAAAAAAnmt8I5DcF2A5K8Zqt7OECZDyzk', { action: 'submit' }).then(function (token) {
-    document.getElementById('g-recaptcha-response').value = token;
-  });
-});
-</script>
-  <script>
-  const floraForm = document.getElementById('flora-contact-form');
-  floraForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const formData = new FormData(floraForm);
-    const response = await fetch(floraForm.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
+  document.querySelectorAll('form.contact-form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const submitButton = form.querySelector('[type="submit"]');
+  
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
       }
+  
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LedUOwsAAAAAAnmt8I5DcF2A5K8Zqt7OECZDyzk', { action: 'submit' }).then(async function(token) {
+          let tokenInput = form.querySelector('[name="g-recaptcha-response"]');
+  
+          if (!tokenInput) {
+            tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = 'g-recaptcha-response';
+            form.appendChild(tokenInput);
+          }
+  
+          tokenInput.value = token;
+  
+          const formData = new FormData(form);
+  
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+  
+            if (response.ok) {
+              form.innerHTML = `
+                <div class="form-success">
+                  Thanks for your submission — we’ll be getting back to you at our earliest convenience.
+                </div>
+              `;
+            } else {
+              if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+              }
+  
+              alert('Something went wrong. Please try again.');
+            }
+          } catch (error) {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = 'Send Message';
+            }
+  
+            alert('Something went wrong. Please try again.');
+          }
+        });
+      });
     });
-    if (response.ok) {
-      floraForm.innerHTML = `
-        <div class="form-success">
-          Thanks for your submission — we’ll be getting back to you at our earliest convenience.
-        </div>
-      `;
-    } else {
-      alert('Something went wrong. Please try again.');
-    }
   });
   </script>
+
 </body>
 </html>
