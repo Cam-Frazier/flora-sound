@@ -695,7 +695,7 @@ a {
 }
 @media (max-width: 1100px) {
   .gallery-layout {
-    grid-template-columns: 0.9fr repeat(3, 1fr);
+    grid-template-columns: 1fr;
   }
   .gallery-card:nth-of-type(n + 5) {
     display: none;
