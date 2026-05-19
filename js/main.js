@@ -34,6 +34,11 @@ function onScroll(){
   ticking=true;
 }
 
+function closeNav(){
+  nav?.classList.remove('is-open');
+  navToggle?.setAttribute('aria-expanded','false');
+}
+
 function openModal(id){
   const modal=document.getElementById(id);
   if(!modal) return;
@@ -73,15 +78,27 @@ updateParallax();
 window.addEventListener('scroll',onScroll,{passive:true});
 window.addEventListener('resize',onScroll,{passive:true});
 
-navToggle?.addEventListener('click',()=>{
+navToggle?.addEventListener('click',event=>{
+  event.stopPropagation();
+
   const isOpen=nav.classList.toggle('is-open');
   navToggle.setAttribute('aria-expanded',isOpen?'true':'false');
 });
 
+document.addEventListener('click',event=>{
+  if(!nav?.classList.contains('is-open')) return;
+
+  const clickedInsideNav=nav.contains(event.target);
+  const clickedToggle=navToggle?.contains(event.target);
+
+  if(!clickedInsideNav && !clickedToggle){
+    closeNav();
+  }
+});
+
 nav?.querySelectorAll('a').forEach(link=>{
   link.addEventListener('click',()=>{
-    nav.classList.remove('is-open');
-    navToggle?.setAttribute('aria-expanded','false');
+    closeNav();
   });
 });
 
@@ -94,5 +111,8 @@ modalClosers.forEach(closer=>{
 });
 
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape') closeModal();
+  if(event.key==='Escape'){
+    closeModal();
+    closeNav();
+  }
 });
