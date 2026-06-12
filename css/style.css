@@ -1039,6 +1039,13 @@ a {
   max-width: 760px;
   font-size: 14px;
 }
+.event-description p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+.event-description p:last-child {
+  margin-bottom: 0;
+}
 .event-actions {
   display: flex;
   align-items: center;
