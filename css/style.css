@@ -1101,3 +1101,15 @@ a {
     justify-content: flex-start;
   }
 }
+
+/* Event description formatting */
+.event-description {
+  display: grid;
+  gap: 8px;
+}
+.event-description p {
+  margin: 0;
+}
+.event-description p + p {
+  margin-top: 2px;
+}

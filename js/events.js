@@ -15,11 +15,58 @@
   const getEndDate = event => new Date(event.end.dateTime || `${event.end.date}T00:00:00`);
   const isAllDay = event => Boolean(event.start.date);
 
+  function decodeHtml(value = '') {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = value;
+    return textarea.value;
+  }
+
+  function descriptionDocument(description = '') {
+    const decoded = decodeHtml(description);
+    return new DOMParser().parseFromString(`<div>${decoded}</div>`, 'text/html');
+  }
+
   function getTicketUrl(description = '') {
-    const labelled = description.match(/(?:tickets?|ticket link)\s*:\s*(https?:\/\/[^\s<]+)/i);
+    const doc = descriptionDocument(description);
+    const anchors = [...doc.querySelectorAll('a[href]')];
+    const ticketAnchor = anchors.find(anchor => /ticket/i.test(anchor.textContent || ''));
+    if (ticketAnchor) return ticketAnchor.href;
+
+    const plainText = doc.body.textContent || '';
+    const labelled = plainText.match(/(?:tickets?|ticket link)\s*:\s*(https?:\/\/\S+)/i);
     if (labelled) return labelled[1].replace(/[),.;]+$/, '');
-    const firstUrl = description.match(/https?:\/\/[^\s<]+/i);
+
+    const firstUrl = plainText.match(/https?:\/\/\S+/i);
     return firstUrl ? firstUrl[0].replace(/[),.;]+$/, '') : '';
+  }
+
+  function cleanDescription(description = '') {
+    if (!description) return '';
+
+    const doc = descriptionDocument(description);
+    doc.querySelectorAll('a').forEach(anchor => {
+      const text = anchor.textContent || '';
+      if (/ticket/i.test(text)) anchor.remove();
+      else anchor.replaceWith(text);
+    });
+
+    const lines = (doc.body.innerText || doc.body.textContent || '')
+      .split(/\n+/)
+      .map(line => line.trim())
+      .filter(Boolean)
+      .filter(line => !/^(?:tickets?|ticket link)\s*:?/i.test(line));
+
+    return lines.join('\n');
+  }
+
+  function descriptionMarkup(description = '') {
+    const cleaned = cleanDescription(description);
+    if (!cleaned) return '';
+
+    return cleaned
+      .split('\n')
+      .map(line => `<p>${escapeHtml(line)}</p>`)
+      .join('');
   }
 
   function dateParts(event) {
@@ -51,7 +98,7 @@
     const ticketUrl = getTicketUrl(event.description);
     const location = event.location ? `<p class="event-location">${escapeHtml(event.location)}</p>` : '';
     const description = event.description
-      ? `<p class="event-description">${escapeHtml(event.description.replace(/https?:\/\/\S+/g, '').replace(/(?:tickets?|ticket link)\s*:\s*/ig, '').trim())}</p>`
+      ? `<div class="event-description">${descriptionMarkup(event.description)}</div>`
       : '';
     const ticketButton = ticketUrl
       ? `<a class="btn event-ticket" href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener">Get Tickets</a>`
