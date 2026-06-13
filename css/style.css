@@ -921,6 +921,10 @@ a {
   .modal-copy h2 {
     font-size: clamp(36px, 11vw, 52px);
   }
+  .footer-meta {
+    align-items: center;
+    text-align: center;
+  }
 }
 @media (max-width: 560px) {
   .site-logo img {
