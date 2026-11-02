@@ -78,6 +78,8 @@
     }
 
     function showFallback() {
+        stopAutoplay();
+        productCount = 0;
         track.replaceChildren();
         const message = document.createElement('p');
         message.className = 'shop-feature-status';
@@ -90,26 +92,101 @@
         updateArrows();
     }
 
+
+    const AUTOPLAY_DELAY = 4000;
+    let productCount = 0;
+    let currentIndex = 0;
+    let autoplay = null;
+    let scrollEndTimer = null;
+    let hovering = false;
+    let focusInside = false;
+
+    function stepSize() {
+        const card = track.querySelector('.shop-product-card');
+        return card ? card.getBoundingClientRect().width +
+            (parseFloat(getComputedStyle(track).gap) || 0) : 0;
+    }
+
+    // Three sets let the slider cross either end before quietly resetting
+    // to the identical position in the middle set.
+    function jumpTo(index) {
+        const oldSnap = track.style.scrollSnapType;
+        const oldBehavior = track.style.scrollBehavior;
+        track.style.scrollSnapType = 'none';
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = index * stepSize();
+        // Force the browser to apply the jump before restoring scroll snapping.
+        void track.offsetWidth;
+        track.style.scrollSnapType = oldSnap;
+        track.style.scrollBehavior = oldBehavior;
+    }
+
+    function normalizePosition() {
+        if (productCount < 2) return;
+        const step = stepSize();
+        if (!step) return;
+        const absoluteIndex = Math.round(track.scrollLeft / step);
+        if (absoluteIndex < productCount || absoluteIndex >= productCount * 2) {
+            const normalized = ((absoluteIndex % productCount) + productCount) % productCount;
+            jumpTo(productCount + normalized);
+            currentIndex = normalized;
+        } else {
+            currentIndex = absoluteIndex - productCount;
+        }
+    }
+
     function updateArrows() {
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        prev.disabled = track.scrollLeft < 5;
-        next.disabled = maxScroll < 5 || track.scrollLeft >= maxScroll - 5;
+        const enabled = productCount > 1;
+        prev.disabled = !enabled;
+        next.disabled = !enabled;
     }
 
     function move(direction) {
-        const card = track.querySelector('.shop-product-card');
-        if (!card) return;
-        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-        track.scrollBy({
-            left: direction * (card.getBoundingClientRect().width + gap),
+        if (productCount < 2) return;
+        // Reset to the middle copy before moving if the user reached a clone.
+        normalizePosition();
+        currentIndex = (currentIndex + direction + productCount) % productCount;
+        const absoluteIndex = Math.round(track.scrollLeft / stepSize()) + direction;
+        track.scrollTo({
+            left: absoluteIndex * stepSize(),
             behavior: reducedMotion.matches ? 'auto' : 'smooth'
         });
     }
 
-    prev.addEventListener('click', () => move(-1));
-    next.addEventListener('click', () => move(1));
-    track.addEventListener('scroll', updateArrows, { passive: true });
-    window.addEventListener('resize', updateArrows);
+    function stopAutoplay() {
+        if (autoplay !== null) {
+            clearInterval(autoplay);
+            autoplay = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        if (productCount < 2 || reducedMotion.matches || document.hidden ||
+            hovering || focusInside) return;
+        autoplay = window.setInterval(() => move(1), AUTOPLAY_DELAY);
+    }
+
+    prev.addEventListener('click', () => { move(-1); startAutoplay(); });
+    next.addEventListener('click', () => { move(1); startAutoplay(); });
+    track.addEventListener('scroll', () => {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(normalizePosition, 220);
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+        if (productCount > 1) jumpTo(productCount + currentIndex);
+    });
+    track.addEventListener('pointerenter', () => { hovering = true; stopAutoplay(); });
+    track.addEventListener('pointerleave', () => { hovering = false; startAutoplay(); });
+    track.addEventListener('focusin', () => { focusInside = true; stopAutoplay(); });
+    track.addEventListener('focusout', event => {
+        if (!track.contains(event.relatedTarget)) {
+            focusInside = false;
+            startAutoplay();
+        }
+    });
+    document.addEventListener('visibilitychange', startAutoplay);
+    reducedMotion.addEventListener?.('change', startAutoplay);
 
     async function loadProducts() {
         try {
@@ -128,8 +205,20 @@
             );
             if (!visible.length) return showFallback();
 
-            track.replaceChildren(...visible.map(createCard));
+            productCount = visible.length;
+            currentIndex = 0;
+            const cards = visible.map(createCard);
+            if (productCount > 1) {
+                // Clones remain usable product links during the looping transition.
+                const before = cards.map(card => card.cloneNode(true));
+                const after = cards.map(card => card.cloneNode(true));
+                track.replaceChildren(...before, ...cards, ...after);
+                jumpTo(productCount);
+            } else {
+                track.replaceChildren(...cards);
+            }
             updateArrows();
+            startAutoplay();
         } catch (error) {
             console.warn('Flora merchandise feed unavailable:', error);
             showFallback();
