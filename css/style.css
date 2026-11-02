@@ -1293,14 +1293,16 @@ a {
 }
 .shop-feature-status {
     grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
+    grid-row: 1;
+    display: block;
+    width: 100%;
+    align-self: start;
     min-height: 180px;
     color: #5b655c;
     line-height: 1.7;
 }
 .shop-feature-status a {
-    margin-left: 5px;
+    margin-left: 0;
     color: #0f2a1f;
     text-decoration: underline;
 }
