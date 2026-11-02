@@ -1367,3 +1367,24 @@ a {
         scroll-behavior: auto;
     }
 }
+
+/* Merchandise slider: explicit flex sizing prevents narrow mobile columns. */
+.shop-feature-track {
+    display: flex;
+    grid-auto-columns: unset;
+    align-items: stretch;
+}
+.shop-product-card {
+    flex: 0 0 calc((100% - 40px) / 3);
+    min-width: 0;
+}
+@media (max-width: 900px) {
+    .shop-product-card {
+        flex-basis: calc((100% - 20px) / 2);
+    }
+}
+@media (max-width: 600px) {
+    .shop-product-card {
+        flex-basis: 84%;
+    }
+}
