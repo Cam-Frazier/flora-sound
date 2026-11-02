@@ -1205,8 +1205,18 @@ a {
     margin-bottom: 38px;
 }
 .shop-feature-heading h2 {
-    font: 400 clamp(40px, 5.5vw, 70px)/1.1 var(--font-logo);
-    margin-bottom: 16px;
+    font-family: var(--font-logo);
+    font-size: clamp(60px, 9.5vw, 138px);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    margin-bottom: 24px;
+}
+.shop-feature-heading h2 span {
+    color: #8c6a3f;
+}
+.shop-feature-heading > div {
+    min-width: 0;
 }
 .shop-feature-heading p:not(.eyebrow) {
     color: #5b655c;
@@ -1359,5 +1369,18 @@ a {
 @media (prefers-reduced-motion: reduce) {
     .shop-feature-track {
         scroll-behavior: auto;
+    }
+}
+
+/* Keep the collection display heading readable on smaller screens. */
+@media (max-width: 900px) {
+    .shop-feature-heading h2 {
+        font-size: clamp(58px, 10vw, 100px);
+    }
+}
+@media (max-width: 600px) {
+    .shop-feature-heading h2 {
+        font-size: clamp(55px, 12vw, 78px);
+        line-height: 1;
     }
 }
