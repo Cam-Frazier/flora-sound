@@ -102,7 +102,7 @@
         const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
         track.scrollBy({
             left: direction * (card.getBoundingClientRect().width + gap),
-            behavior: reducedMotion.matches ? 'instant' : 'smooth'
+            behavior: reducedMotion.matches ? 'auto' : 'smooth'
         });
     }
 
