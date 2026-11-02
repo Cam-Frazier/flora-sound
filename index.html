@@ -87,6 +87,30 @@
       <a class="scroll-cue" href="#about" aria-label="Scroll to about">↓</a>
     </section>
 
+
+    <!-- Live WooCommerce products -->
+    <section class="shop-feature" id="shop" aria-labelledby="shop-feature-title">
+      <div class="container">
+        <div class="shop-feature-heading">
+          <div>
+            <p class="eyebrow">Flora merchandise</p>
+            <h2 id="shop-feature-title">Wear the sound.</h2>
+            <p>Pieces from the Flora Sound System collection.</p>
+          </div>
+          <a class="shop-feature-all" href="https://shop.florasound.com">Shop all merchandise <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="shop-feature-carousel">
+          <div class="shop-feature-track" id="shop-products" aria-live="polite" aria-label="Latest products">
+            <p class="shop-feature-status" role="status">Loading the latest collection…</p>
+          </div>
+          <div class="shop-feature-controls">
+            <button class="shop-feature-arrow" type="button" id="shop-products-prev" aria-label="Previous products" disabled>←</button>
+            <button class="shop-feature-arrow" type="button" id="shop-products-next" aria-label="Next products" disabled>→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="about section-dark" id="about">
       <div class="container split">
         <div class="copy-block">
@@ -321,6 +345,7 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/shop-products.js" defer></script>
   <script src="js/events.js"></script>
 
   <script>
