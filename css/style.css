@@ -989,9 +989,6 @@ a {
   overflow: hidden;
 }
 
-#site-nav a:last-of-type {
-  display: none;
-}
 
 #newsletter {
   display: none;
